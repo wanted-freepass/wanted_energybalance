@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as S from './Product.style';
 import { BsPlus } from 'react-icons/bs';
 import { ProductProps } from '../ProductList/ProductList';
 
 const Product = ({
-  productData,
   sortedData,
+  currentPosts,
+  productData,
 }: {
-  productData: ProductProps[];
   sortedData: ProductProps[];
+  currentPosts: ProductProps[];
+  productData: ProductProps[];
 }): JSX.Element => {
-  console.log(productData);
-
   return (
     <div>
       {sortedData.map(product => {
+        // {currentPosts.map(product => {
         return (
           <S.Container key={product.id}>
             <S.ProductWrap>

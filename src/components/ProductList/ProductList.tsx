@@ -15,9 +15,13 @@ export interface ProductProps {
 const ProductList = ({
   productData,
   userInput,
+  currentPosts,
+  totalPosts,
 }: {
   productData: ProductProps[];
   userInput: string;
+  currentPosts: ProductProps[];
+  totalPosts: number;
 }): JSX.Element => {
   const [isClicked, setIsClicked] = useState(true);
   const [clickedTab, setClickedTab] = useState('');
@@ -48,9 +52,16 @@ const ProductList = ({
         <S.Tab onClick={onClick}>아동용</S.Tab>
       </S.TabWrap>
       <S.SearchAmount>
-        <S.Span>총 {sortedData.length}개</S.Span>의 검색결과가 있습니다.
+        <S.Span>
+          총 {sortedData.length}개 // {totalPosts}
+        </S.Span>
+        의 검색결과가 있습니다.
       </S.SearchAmount>
-      <Product productData={productData} sortedData={sortedData} />
+      <Product
+        sortedData={sortedData}
+        currentPosts={currentPosts}
+        productData={productData}
+      />
     </S.ProductListWrap>
   );
 };

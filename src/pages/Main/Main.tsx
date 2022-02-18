@@ -5,12 +5,17 @@ import * as S from './Main.style';
 import ProductList from '../../components/ProductList/ProductList';
 import { ProductProps } from '../../components/ProductList/ProductList';
 import { BiWon } from 'react-icons/bi';
+import PagiNation from '../../components/Pagination';
 
 const Main = (): JSX.Element => {
   const [productData, setProductData] = useState<ProductProps[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
   const [isModal, setIsModal] = useState(false);
   // const [price, setPrice] = useState();
   const [range, setRange] = useState('');
+  const postPerPage: number = 10;
+  const indexOfLastPost = currentPage * postPerPage;
+  const indexOfFirstPost = indexOfLastPost - postPerPage;
 
   const clickModal = () => {
     setIsModal(prev => !prev);
@@ -41,6 +46,8 @@ const Main = (): JSX.Element => {
   };
 
   console.log(userInput);
+  const currentPosts = productData.slice(indexOfFirstPost, indexOfLastPost);
+  const paginate = (pageNum: number) => setCurrentPage(pageNum);
 
   return (
     <S.Container>
@@ -54,7 +61,17 @@ const Main = (): JSX.Element => {
           {isModal && <Price handleNumRange={handleNumRange} range={range} />}
         </S.Wrapper>
       </S.PriceModal>
-      <ProductList productData={productData} userInput={userInput} />
+      <ProductList
+        currentPosts={currentPosts}
+        totalPosts={productData.length}
+        productData={productData}
+        userInput={userInput}
+      />
+      <PagiNation
+        postPerPage={postPerPage}
+        totalPosts={productData.length}
+        paginate={paginate}
+      />
     </S.Container>
   );
 };
