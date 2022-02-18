@@ -13,17 +13,19 @@ export interface ProductProps {
 }
 
 const ProductList = ({
-  productData,
+  currentPosts,
+  totalPosts,
 }: {
-  productData: ProductProps[];
+  currentPosts: ProductProps[];
+  totalPosts: number;
 }): JSX.Element => {
   return (
     <S.ProductListWrap>
       <MenuTab />
       <S.SearchAmount>
-        <S.Span>총 {productData.length}개</S.Span>의 검색결과가 있습니다.
+        <S.Span>총 {totalPosts}개</S.Span>의 검색결과가 있습니다.
       </S.SearchAmount>
-      <Product productData={productData} />
+      <Product currentPosts={currentPosts} />
     </S.ProductListWrap>
   );
 };
