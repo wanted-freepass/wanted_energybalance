@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from './Search.style';
 import { BsSearch } from 'react-icons/bs';
 
 const Search = () => {
+  const [product, setProduct] = useState('');
+  // const
+
   return (
     <S.Container>
       <S.InputWrap>
