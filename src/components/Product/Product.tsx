@@ -21,6 +21,7 @@ const Product = ({
                 <S.ProductContent>
                   <S.BrandName>{product.brand}</S.BrandName>
                   <S.ProductName>{product.product}</S.ProductName>
+                  <S.ProductName>{product.price}</S.ProductName>
                 </S.ProductContent>
               </S.ProductConWrap>
               <S.ProductConWrap>
