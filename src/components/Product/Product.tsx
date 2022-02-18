@@ -4,15 +4,13 @@ import { BsPlus } from 'react-icons/bs';
 import { ProductProps } from '../ProductList/ProductList';
 
 const Product = ({
-  productData,
+  currentPosts,
 }: {
-  productData: ProductProps[];
+  currentPosts: ProductProps[];
 }): JSX.Element => {
-  console.log(productData);
-
   return (
     <div>
-      {productData.map(product => {
+      {currentPosts.map(product => {
         return (
           <S.Container key={product.id}>
             <S.ProductWrap>
