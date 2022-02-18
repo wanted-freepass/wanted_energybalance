@@ -4,13 +4,18 @@ import { BsPlus } from 'react-icons/bs';
 import { ProductProps } from '../ProductList/ProductList';
 
 const Product = ({
+  sortedData,
   currentPosts,
+  productData,
 }: {
+  sortedData: ProductProps[];
   currentPosts: ProductProps[];
+  productData: ProductProps[];
 }): JSX.Element => {
   return (
     <div>
-      {currentPosts.map(product => {
+      {sortedData.map(product => {
+        // {currentPosts.map(product => {
         return (
           <S.Container key={product.id}>
             <S.ProductWrap>
@@ -19,7 +24,9 @@ const Product = ({
                 <S.ProductContent>
                   <S.BrandName>{product.brand}</S.BrandName>
                   <S.ProductName>{product.product}</S.ProductName>
-                  <S.ProductName>{product.price}</S.ProductName>
+                  <S.ProductPrice>
+                    {product.price.toLocaleString()}
+                  </S.ProductPrice>
                 </S.ProductContent>
               </S.ProductConWrap>
               <S.ProductConWrap>

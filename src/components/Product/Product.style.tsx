@@ -35,6 +35,13 @@ export const ProductName = styled.p`
   font-weight: ${props => props.theme.weightSemiBold};
 `;
 
+export const ProductPrice = styled.p`
+  margin: 4px 0;
+  font-size: 12px;
+  color: #111;
+  line-height: 18px;
+`;
+
 export const EnrolledButton = styled.button`
   display: flex;
   align-items: center;
