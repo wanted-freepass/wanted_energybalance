@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from './Product.style';
 import { BsPlus } from 'react-icons/bs';
 import { ProductProps } from '../ProductList/ProductList';
 
 const Product = ({
   productData,
+  sortedData,
 }: {
   productData: ProductProps[];
+  sortedData: ProductProps[];
 }): JSX.Element => {
   console.log(productData);
 
   return (
     <div>
-      {productData.map(product => {
+      {sortedData.map(product => {
         return (
           <S.Container key={product.id}>
             <S.ProductWrap>
@@ -21,7 +23,9 @@ const Product = ({
                 <S.ProductContent>
                   <S.BrandName>{product.brand}</S.BrandName>
                   <S.ProductName>{product.product}</S.ProductName>
-                  <S.ProductName>{product.price}</S.ProductName>
+                  <S.ProductPrice>
+                    {product.price.toLocaleString()}
+                  </S.ProductPrice>
                 </S.ProductContent>
               </S.ProductConWrap>
               <S.ProductConWrap>

@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import * as S from './Price.style';
 
-const Price = () => {
+const Price = ({
+  handleNumRange,
+  range,
+}: {
+  handleNumRange: (e: string) => void;
+  range: string;
+}) => {
   const [lowerPrice, setLowerPrice] = useState('');
   const [upperPrice, setUpperPrice] = useState('');
 
@@ -12,6 +18,12 @@ const Price = () => {
   const handleUpperPrice = (e: any) => {
     setUpperPrice(e.target.value);
   };
+
+  // const handleNumRange = (e: any) => {
+  //   setRange(e.target.value);
+  // };
+
+  console.log(range);
 
   return (
     <S.Container>
@@ -41,7 +53,7 @@ const Price = () => {
         <S.Button>적용</S.Button>
       </S.Wrapper>
       <S.Wrapper>
-        <S.Select name="" id="">
+        <S.Select name="" id="" onChange={(e: any) => handleNumRange(range)}>
           <option>전체</option>
           <option>30,000원 이하</option>
           <option>30,000원 ~ 50,000원</option>
