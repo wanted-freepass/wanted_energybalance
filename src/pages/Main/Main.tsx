@@ -9,8 +9,12 @@ import PagiNation from '../../components/Pagination';
 
 const Main = (): JSX.Element => {
   const [productData, setProductData] = useState<ProductProps[]>([]);
-
+  const [currentPage, setCurrentPage] = useState(1);
   const [isModal, setIsModal] = useState(false);
+  const postPerPage: number = 10;
+  const indexOfLastPost = currentPage * postPerPage;
+  const indexOfFirstPost = indexOfLastPost - postPerPage;
+
   const clickModal = () => {
     setIsModal(prev => !prev);
   };
@@ -21,13 +25,7 @@ const Main = (): JSX.Element => {
       .then(res => setProductData(res));
   }, []);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const postPerPage: number = 10;
-
-  const indexOfLastPost = currentPage * postPerPage;
-  const indexOfFirstPost = indexOfLastPost - postPerPage;
   const currentPosts = productData.slice(indexOfFirstPost, indexOfLastPost);
-
   const paginate = (pageNum: number) => setCurrentPage(pageNum);
 
   return (

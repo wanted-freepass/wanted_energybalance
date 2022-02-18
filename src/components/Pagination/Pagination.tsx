@@ -15,6 +15,8 @@ const PagiNation = ({
     pageNumbers.push(i);
   }
 
+  // pageNumbers
+
   return (
     <S.Container>
       <S.PageUl>
