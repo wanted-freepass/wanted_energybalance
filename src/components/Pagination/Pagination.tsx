@@ -1,17 +1,22 @@
 import React from 'react';
 import * as S from './Pagination.style';
+import { ProductProps } from '../ProductList/ProductList';
 
 const PagiNation = ({
   postPerPage,
-  totalPosts,
+  sortedData,
   paginate,
+  userInput,
+  currentPosts,
 }: {
   postPerPage: number;
-  totalPosts: number;
+  sortedData: number;
   paginate: (pageNum: number) => void;
+  userInput: string;
+  currentPosts: ProductProps[];
 }): JSX.Element => {
   const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(totalPosts / postPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(sortedData / postPerPage); i++) {
     pageNumbers.push(i);
   }
 
@@ -19,13 +24,15 @@ const PagiNation = ({
 
   return (
     <S.Container>
-      <S.PageUl>
-        {pageNumbers.map(number => (
-          <S.PageLi key={number}>
-            <S.PageSpan onClick={() => paginate(number)}>{number}</S.PageSpan>
-          </S.PageLi>
-        ))}
-      </S.PageUl>
+      {userInput.length >= 1 && (
+        <S.PageUl>
+          {pageNumbers.map(number => (
+            <S.PageLi key={number}>
+              <S.PageSpan onClick={() => paginate(number)}>{number}</S.PageSpan>
+            </S.PageLi>
+          ))}
+        </S.PageUl>
+      )}
     </S.Container>
   );
 };

@@ -11,9 +11,10 @@ const Main = (): JSX.Element => {
   const [productData, setProductData] = useState<ProductProps[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isModal, setIsModal] = useState(false);
-  // const [price, setPrice] = useState();
+  const [product, setProduct] = useState('');
+  const [userInput, setUserInput] = useState('');
   const [range, setRange] = useState('');
-  const postPerPage: number = 10;
+  const postPerPage = 10;
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
 
@@ -30,24 +31,21 @@ const Main = (): JSX.Element => {
   const handleNumRange = (e: any) => {
     setRange(e.target.value);
   };
-  console.log(range);
-
   // const numRange = (range: any) => {
   //   setPrice(range);
   //   console.log(range);
   // };
 
-  const [product, setProduct] = useState('');
-  const [userInput, setUserInput] = useState('');
-
   const handle = (e: any) => {
     setUserInput(e.target.value);
-    console.log(e.target);
   };
 
-  console.log(userInput);
   const currentPosts = productData.slice(indexOfFirstPost, indexOfLastPost);
   const paginate = (pageNum: number) => setCurrentPage(pageNum);
+
+  const sortedData = currentPosts.filter(medicine => {
+    return medicine.product.includes(userInput);
+  });
 
   return (
     <S.Container>
@@ -61,16 +59,20 @@ const Main = (): JSX.Element => {
           {isModal && <Price handleNumRange={handleNumRange} range={range} />}
         </S.Wrapper>
       </S.PriceModal>
+
       <ProductList
         currentPosts={currentPosts}
         totalPosts={productData.length}
         productData={productData}
         userInput={userInput}
       />
+
       <PagiNation
         postPerPage={postPerPage}
-        totalPosts={productData.length}
+        sortedData={sortedData.length}
         paginate={paginate}
+        userInput={userInput}
+        currentPosts={currentPosts}
       />
     </S.Container>
   );
