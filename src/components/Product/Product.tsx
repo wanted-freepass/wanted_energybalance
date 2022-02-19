@@ -5,17 +5,12 @@ import { ProductProps } from '../ProductList/ProductList';
 
 const Product = ({
   sortedData,
-  currentPosts,
-  productData,
 }: {
   sortedData: ProductProps[];
-  currentPosts: ProductProps[];
-  productData: ProductProps[];
 }): JSX.Element => {
   return (
     <div>
       {sortedData.map(product => {
-        // {currentPosts.map(product => {
         return (
           <S.Container key={product.id}>
             <S.ProductWrap>

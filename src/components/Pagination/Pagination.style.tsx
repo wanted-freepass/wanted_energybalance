@@ -12,11 +12,12 @@ export const PageUl = styled.ul`
   padding: 1px;
 `;
 
-export const PageLi = styled.li`
+export const PageLi = styled.button`
   width: 25px;
   padding: 6px 4px 3px 4px;
   margin: 4px;
   color: ${props => props.theme.darkGray};
+  border: none;
   border-radius: 4px;
   background-color: ${props => props.theme.mediumGray};
   font-size: 16px;
@@ -28,14 +29,9 @@ export const PageLi = styled.li`
     cursor: pointer;
   }
   &:focus {
-    color: white;
+    color: #fff;
     background-color: ${props => props.theme.blue};
   }
 `;
 
-export const PageSpan = styled.span`
-  &:focus {
-    color: white;
-    background-color: ${props => props.theme.blue};
-  }
-`;
+export const PageSpan = styled.span``;
