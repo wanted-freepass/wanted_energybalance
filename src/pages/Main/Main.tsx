@@ -14,12 +14,17 @@ const Main = (): JSX.Element => {
   const [product, setProduct] = useState('');
   const [userInput, setUserInput] = useState('');
   const [range, setRange] = useState('');
+
   const postPerPage = 10;
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
 
   const clickModal = () => {
     setIsModal(prev => !prev);
+  };
+
+  const handle = (e: any) => {
+    setUserInput(e.target.value);
   };
 
   useEffect(() => {
@@ -36,14 +41,10 @@ const Main = (): JSX.Element => {
   //   console.log(range);
   // };
 
-  const handle = (e: any) => {
-    setUserInput(e.target.value);
-  };
-
   const currentPosts = productData.slice(indexOfFirstPost, indexOfLastPost);
   const paginate = (pageNum: number) => setCurrentPage(pageNum);
 
-  const sortedData = currentPosts.filter(medicine => {
+  const sortedData = productData.filter(medicine => {
     return medicine.product.includes(userInput);
   });
 
@@ -60,13 +61,7 @@ const Main = (): JSX.Element => {
         </S.Wrapper>
       </S.PriceModal>
 
-      <ProductList
-        currentPosts={currentPosts}
-        totalPosts={productData.length}
-        productData={productData}
-        userInput={userInput}
-      />
-
+      <ProductList productData={productData} userInput={userInput} />
       <PagiNation
         postPerPage={postPerPage}
         sortedData={sortedData.length}

@@ -24,7 +24,7 @@ const PagiNation = ({
 
   return (
     <S.Container>
-      {userInput.length >= 1 && (
+      {userInput && (
         <S.PageUl>
           {pageNumbers.map(number => (
             <S.PageLi key={number}>

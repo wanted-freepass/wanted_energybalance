@@ -15,18 +15,14 @@ export interface ProductProps {
 const ProductList = ({
   productData,
   userInput,
-  currentPosts,
-  totalPosts,
 }: {
   productData: ProductProps[];
   userInput: string;
-  currentPosts: ProductProps[];
-  totalPosts: number;
 }): JSX.Element => {
   const [isClicked, setIsClicked] = useState(true);
   const [clickedTab, setClickedTab] = useState('');
 
-  const sortedData = currentPosts.filter(medicine => {
+  const sortedData = productData.filter(medicine => {
     return medicine.product.includes(userInput);
   });
 
@@ -42,8 +38,6 @@ const ProductList = ({
     }
   };
 
-  console.log(sortedData);
-
   return (
     <S.ProductListWrap>
       <S.TabWrap>
@@ -51,12 +45,12 @@ const ProductList = ({
         <S.Tab onClick={onClick}>브랜드명</S.Tab>
         <S.Tab onClick={onClick}>아동용</S.Tab>
       </S.TabWrap>
-      {userInput.length >= 1 && (
+      {userInput && (
         <S.SearchAmount>
           <S.Span>총 {sortedData.length}개 </S.Span>의 검색결과가 있습니다.
         </S.SearchAmount>
       )}
-      {userInput.length >= 1 && <Product sortedData={sortedData} />}
+      {userInput && <Product sortedData={sortedData} />}
     </S.ProductListWrap>
   );
 };
