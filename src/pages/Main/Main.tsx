@@ -41,12 +41,14 @@ const Main = (): JSX.Element => {
   //   console.log(range);
   // };
 
-  const currentPosts = productData.slice(indexOfFirstPost, indexOfLastPost);
   const paginate = (pageNum: number) => setCurrentPage(pageNum);
 
   const sortedData = productData.filter(medicine => {
     return medicine.product.includes(userInput);
   });
+
+  const currentPosts = sortedData.slice(indexOfFirstPost, indexOfLastPost);
+  console.log(currentPosts);
 
   return (
     <S.Container>
@@ -67,7 +69,6 @@ const Main = (): JSX.Element => {
         sortedData={sortedData.length}
         paginate={paginate}
         userInput={userInput}
-        currentPosts={currentPosts}
       />
     </S.Container>
   );

@@ -1,19 +1,17 @@
 import React from 'react';
 import * as S from './Pagination.style';
-import { ProductProps } from '../ProductList/ProductList';
+// import { ProductProps } from '../ProductList/ProductList';
 
 const PagiNation = ({
   postPerPage,
   sortedData,
   paginate,
   userInput,
-  currentPosts,
 }: {
   postPerPage: number;
   sortedData: number;
   paginate: (pageNum: number) => void;
   userInput: string;
-  currentPosts: ProductProps[];
 }): JSX.Element => {
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(sortedData / postPerPage); i++) {
